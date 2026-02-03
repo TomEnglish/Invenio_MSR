@@ -1,0 +1,165 @@
+{
+  "info": {
+    "description": "Sample GPS tracker data for demonstration purposes",
+    "site_location": {
+      "name": "Project X Site",
+      "latitude": 35.293,
+      "longitude": -101.603,
+      "location": "Texas Panhandle Area"
+    },
+    "geofence_radius_km": 0.5
+  },
+  "trackers": [
+    {
+      "id": "tracker_001",
+      "name": "Equipment Trailer A",
+      "type": "GPS Tracker",
+      "latitude": 35.295,
+      "longitude": -101.605,
+      "accuracy_meters": 15,
+      "last_seen_at": "2026-02-03T14:30:00Z",
+      "status": "On Site",
+      "is_on_site": true,
+      "distance_from_site_km": 0.31
+    },
+    {
+      "id": "tracker_002",
+      "name": "Main Generator",
+      "type": "GPS Tracker",
+      "latitude": 35.292,
+      "longitude": -101.601,
+      "accuracy_meters": 12,
+      "last_seen_at": "2026-02-03T14:25:00Z",
+      "status": "On Site",
+      "is_on_site": true,
+      "distance_from_site_km": 0.22
+    },
+    {
+      "id": "tracker_003",
+      "name": "Compressor Unit 1",
+      "type": "GPS Tracker",
+      "latitude": 35.294,
+      "longitude": -101.604,
+      "accuracy_meters": 18,
+      "last_seen_at": "2026-02-03T14:20:00Z",
+      "status": "On Site",
+      "is_on_site": true,
+      "distance_from_site_km": 0.18
+    },
+    {
+      "id": "tracker_004",
+      "name": "Tool Container B",
+      "type": "GPS Tracker",
+      "latitude": 32.7767,
+      "longitude": -96.7970,
+      "accuracy_meters": 25,
+      "last_seen_at": "2026-02-03T12:15:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 513.2,
+      "notes": "En route from Dallas, TX"
+    },
+    {
+      "id": "tracker_005",
+      "name": "Pump Assembly C",
+      "type": "GPS Tracker",
+      "latitude": 36.1540,
+      "longitude": -95.9928,
+      "accuracy_meters": 20,
+      "last_seen_at": "2026-02-03T11:45:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 412.8,
+      "notes": "En route from Tulsa, OK"
+    },
+    {
+      "id": "tracker_006",
+      "name": "Valve Package D",
+      "type": "GPS Tracker",
+      "latitude": 29.7604,
+      "longitude": -95.3698,
+      "accuracy_meters": 22,
+      "last_seen_at": "2026-02-03T10:30:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 892.5,
+      "notes": "At vendor facility, Houston, TX"
+    },
+    {
+      "id": "tracker_007",
+      "name": "Heat Exchanger E",
+      "type": "GPS Tracker",
+      "latitude": 39.7392,
+      "longitude": -104.9903,
+      "accuracy_meters": 30,
+      "last_seen_at": "2026-02-03T09:00:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 687.3,
+      "notes": "Manufacturing facility, Denver, CO"
+    },
+    {
+      "id": "tracker_008",
+      "name": "Pipe Spool Set F",
+      "type": "GPS Tracker",
+      "latitude": 35.291,
+      "longitude": -101.599,
+      "accuracy_meters": 14,
+      "last_seen_at": "2026-02-03T14:35:00Z",
+      "status": "On Site",
+      "is_on_site": true,
+      "distance_from_site_km": 0.38
+    },
+    {
+      "id": "tracker_009",
+      "name": "Control Panel G",
+      "type": "GPS Tracker",
+      "latitude": 34.0522,
+      "longitude": -118.2437,
+      "accuracy_meters": 28,
+      "last_seen_at": "2026-02-02T16:20:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 1621.4,
+      "notes": "Shipping from Los Angeles, CA"
+    },
+    {
+      "id": "tracker_010",
+      "name": "Instrumentation Package H",
+      "type": "GPS Tracker",
+      "latitude": 41.8781,
+      "longitude": -87.6298,
+      "accuracy_meters": 32,
+      "last_seen_at": "2026-02-01T14:10:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 1456.2,
+      "notes": "Manufacturer warehouse, Chicago, IL"
+    },
+    {
+      "id": "tracker_011",
+      "name": "Electrical Panel J",
+      "type": "GPS Tracker",
+      "latitude": 35.296,
+      "longitude": -101.602,
+      "accuracy_meters": 16,
+      "last_seen_at": "2026-02-03T14:28:00Z",
+      "status": "On Site",
+      "is_on_site": true,
+      "distance_from_site_km": 0.29
+    },
+    {
+      "id": "tracker_012",
+      "name": "Motor Assembly K",
+      "type": "GPS Tracker",
+      "latitude": 30.2672,
+      "longitude": -97.7431,
+      "accuracy_meters": 24,
+      "last_seen_at": "2026-02-03T08:45:00Z",
+      "status": "In Transit",
+      "is_on_site": false,
+      "distance_from_site_km": 678.9,
+      "notes": "Vendor facility, Austin, TX"
+    }
+  ]
+}

@@ -78,27 +78,67 @@ function initializeMap() {
 // ============================================================================
 async function loadTrackers() {
     try {
-        console.log('Loading tracker data from Supabase...');
+        console.log('Loading tracker data...');
 
-        // Query the view for active trackers
-        const { data, error } = await supabaseClient
-            .from('vw_active_samsara_trackers')
-            .select('*')
-            .order('last_seen_at', { ascending: false, nullsFirst: false });
+        // Try to load from Supabase first
+        let loadedFromSupabase = false;
 
-        if (error) throw error;
+        if (supabaseClient && isSupabaseConfigured()) {
+            try {
+                console.log('Attempting to load from Supabase...');
+                const { data, error } = await supabaseClient
+                    .from('vw_active_samsara_trackers')
+                    .select('*')
+                    .order('last_seen_at', { ascending: false, nullsFirst: false });
 
-        state.trackers = data || [];
+                if (!error && data && data.length > 0) {
+                    state.trackers = data;
+                    loadedFromSupabase = true;
+                    console.log(`Loaded ${state.trackers.length} trackers from Supabase`);
+                }
+            } catch (supabaseError) {
+                console.warn('Supabase not available, falling back to sample data');
+            }
+        }
+
+        // Fall back to sample data if Supabase didn't work
+        if (!loadedFromSupabase) {
+            console.log('Loading sample tracker data...');
+            const response = await fetch('sample_data/sample_tracker_locations.json');
+            const sampleData = await response.json();
+
+            // Transform sample data to match expected format
+            state.trackers = sampleData.trackers.map(tracker => ({
+                id: tracker.id,
+                name: tracker.name,
+                type: tracker.type,
+                last_latitude: tracker.latitude,
+                last_longitude: tracker.longitude,
+                last_accuracy_meters: tracker.accuracy_meters,
+                last_seen_at: tracker.last_seen_at,
+                status: tracker.status,
+                is_on_site: tracker.is_on_site,
+                distance_from_site_km: tracker.distance_from_site_km,
+                synced_at: new Date().toISOString()
+            }));
+
+            console.log(`Loaded ${state.trackers.length} sample trackers (DEMO MODE)`);
+
+            // Show demo mode indicator
+            document.getElementById('lastSyncInfo').innerHTML =
+                '<strong style="color: #f5a623;">DEMO MODE:</strong> Using sample data. Configure Supabase for live tracking.';
+        }
+
         state.filteredTrackers = state.trackers;
 
-        console.log(`Loaded ${state.trackers.length} trackers`);
-
         // Log most recent sync time for debugging
-        const mostRecent = state.trackers
-            .filter(t => t.synced_at)
-            .sort((a, b) => new Date(b.synced_at) - new Date(a.synced_at))[0];
-        if (mostRecent) {
-            console.log(`Most recent sync: ${mostRecent.synced_at}`);
+        if (loadedFromSupabase) {
+            const mostRecent = state.trackers
+                .filter(t => t.synced_at)
+                .sort((a, b) => new Date(b.synced_at) - new Date(a.synced_at))[0];
+            if (mostRecent) {
+                console.log(`Most recent sync: ${mostRecent.synced_at}`);
+            }
         }
 
         // Apply initial filters (this will trigger rendering)
@@ -106,11 +146,13 @@ async function loadTrackers() {
 
         // Update UI
         updateStats();
-        updateLastSyncInfo();
+        if (loadedFromSupabase) {
+            updateLastSyncInfo();
+        }
 
     } catch (error) {
         console.error('Error loading trackers:', error);
-        showError('Failed to load tracker data. Please refresh the page.');
+        showError('Failed to load tracker data. Please check console for details.');
     }
 }
 

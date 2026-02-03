@@ -53,13 +53,14 @@ All data auto-updates from Supabase cloud database. No local setup required.
 - Export to Excel
 - Cloud-hosted with Supabase
 
-### 7. Samsara Tracker Map
-- Live location tracking for AT11 passive trackers
-- Interactive map with 500m geofence around site
+### 7. GPS Tracker Map
+- **Demo Mode:** Works out-of-the-box with sample US location data (12 trackers)
+- Interactive map with 500m geofence around project site
 - Auto-categorizes as "On Site", "In Transit", or "Unknown"
 - Permanent labels on map markers
 - Filter by tracker status
-- **Auto-syncs hourly** via GitHub Actions
+- **Optional:** Integrate with Samsara API for live tracking
+- Sample data includes locations across TX, OK, CO, CA, and IL
 
 ---
 
@@ -204,10 +205,18 @@ ProjectProgressandPO/
 
 ## Updating Data
 
-### Option 1: Automated (Samsara Only)
-Samsara tracker data auto-syncs **every hour** via GitHub Actions. No manual action needed!
+### GPS Tracker Data
 
-### Option 2: Manual Sync (PO & Shipments)
+**Demo Mode (Default):**
+The GPS tracker map uses sample data from `sample_data/sample_tracker_locations.json` and works immediately without any configuration.
+
+**Live Mode (Optional - Samsara Integration):**
+1. Configure your Samsara API credentials in `.env`
+2. Set up Supabase database using `supabase/samsara_schema.sql`
+3. Enable GitHub Actions for automatic hourly syncing
+4. See [SAMSARA_API_GUIDE.md](SAMSARA_API_GUIDE.md) for details
+
+### PO & Shipment Data
 
 When your Excel file is updated:
 
@@ -242,13 +251,17 @@ SYNC COMPLETED SUCCESSFULLY
 ================================================================================
 ```
 
-### Option 3: Samsara Manual Sync
+### Samsara Manual Sync (Optional)
+
+If you've configured Samsara integration:
 
 ```bash
 python sync_samsara_data.py
 ```
 
 Or double-click: `sync_samsara.bat`
+
+**Note:** This is only needed if you're using live Samsara tracking. The demo mode works without this.
 
 ---
 
@@ -384,10 +397,11 @@ See [GITHUB_ACTIONS_SETUP.md](GITHUB_ACTIONS_SETUP.md) for setup.
 - Hard refresh browser: `Ctrl + Shift + R`
 - Check "Last Updated" timestamp on dashboard
 
-### Samsara trackers not updating
-- Check GitHub Actions workflow status
-- Verify secrets are set in GitHub repo settings
-- Run `python sync_samsara_data.py` manually to test
+### GPS trackers not showing
+- **Demo mode:** Should load automatically from `sample_data/sample_tracker_locations.json`
+- **Live mode:** Check GitHub Actions workflow status and Supabase connection
+- Verify secrets are set in GitHub repo settings (if using Samsara)
+- Run `python sync_samsara_data.py` manually to test (if using Samsara)
 
 ### Material Tracking shows "Backend Disconnected"
 - Check `supabase-config.js` has correct credentials
@@ -401,18 +415,19 @@ See [GITHUB_ACTIONS_SETUP.md](GITHUB_ACTIONS_SETUP.md) for setup.
 
 ---
 
-## Current Data Summary
+## Sample Data Included
 
-- **97 Purchase Orders** (808 line items)
-- **109 Shipments** tracked
-- **862 Installation Items** across 5 disciplines
-  - Civil: 212 items
-  - Electrical: 166 items
-  - Instrumentation: 112 items
-  - Mechanical: 38 items
-  - Steel: 334 items
-- **50 Samsara Trackers** (AT11 passive)
-- **Material Links:** Track in real-time via Supabase
+The template includes realistic sample data for immediate demonstration:
+
+- **12 GPS Trackers** with US locations
+  - 5 trackers "On Site" (Texas Panhandle area)
+  - 7 trackers "In Transit" (from TX, OK, CO, CA, IL)
+  - Real-world distances and status indicators
+- **Sample Excel files** for testing PO/Shipment imports
+- **Installation audit data** across 5 disciplines
+- **Project schedule data** with activities and milestones
+
+**To customize:** Replace sample data with your actual project data
 
 ---
 
