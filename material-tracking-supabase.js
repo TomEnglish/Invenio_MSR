@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Material Tracking System (Supabase) initializing...');
 
     // Check if Supabase is configured
-    if (SUPABASE_URL === 'YOUR_SUPABASE_URL' || SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY') {
+    if (!supabaseClient || !isSupabaseConfigured || !isSupabaseConfigured()) {
+        console.log('Supabase not configured - showing setup instructions');
         showConfigurationError();
         return;
     }
@@ -55,6 +56,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function checkSupabaseConnection() {
     try {
+        if (!supabaseClient) {
+            throw new Error('Supabase client not initialized');
+        }
+
         // Try to query the material_links table (should work even if empty)
         const { data, error } = await supabaseClient
             .from('material_links')
@@ -62,7 +67,7 @@ async function checkSupabaseConnection() {
 
         if (error) {
             console.error('Supabase connection error:', error);
-            showSupabaseError(error.message);
+            showSupabaseError(error.message || 'Could not connect to database');
             state.supabaseConnected = false;
             return false;
         }
@@ -74,7 +79,7 @@ async function checkSupabaseConnection() {
 
     } catch (error) {
         console.error('Supabase connection failed:', error);
-        showSupabaseError(error.message);
+        showSupabaseError(error.message || 'Database connection failed');
         state.supabaseConnected = false;
         return false;
     }
@@ -103,10 +108,44 @@ function showConfigurationError() {
     document.getElementById('backendSuccess').style.display = 'none';
     document.getElementById('backendWarning').style.display = 'block';
     document.getElementById('backendWarning').innerHTML = `
-        <i class="fas fa-exclamation-triangle me-2"></i>
-        <strong>Configuration Required:</strong> Please configure your Supabase credentials in material-tracking-supabase.js
-        <br><small>See SUPABASE_SETUP_GUIDE.md for instructions</small>
+        <div style="padding: 1.5rem;">
+            <h5 class="mb-3">
+                <i class="fas fa-info-circle me-2" style="color: #f5a623;"></i>
+                Material Tracking Requires Backend Setup
+            </h5>
+            <p class="mb-3">
+                <strong>Good news:</strong> All other features work in <span style="color: #8dc63f; font-weight: bold;">DEMO MODE</span> without any configuration!
+            </p>
+            <ul class="mb-3">
+                <li>✅ Main Dashboard - Working with sample data</li>
+                <li>✅ GPS Tracker Map - Working with sample locations</li>
+                <li>✅ Project Schedule - Working with sample activities</li>
+                <li>✅ Delivery Dates - Working with sample deliveries</li>
+                <li>✅ Gap Analysis - Static page</li>
+                <li>⚠️ Material Tracking - <strong>Requires Supabase setup</strong> (this page)</li>
+            </ul>
+            <p class="mb-2">
+                <strong>Why this page needs configuration:</strong><br>
+                Material Tracking is an interactive feature that creates, updates, and deletes links between materials.
+                It requires a database backend to store these relationships.
+            </p>
+            <div class="alert alert-info mt-3">
+                <strong>To enable Material Tracking:</strong><br>
+                1. Update <code>supabase-config.js</code> with your Supabase credentials<br>
+                2. Run the database schema in <code>supabase/schema.sql</code><br>
+                3. See <a href="SUPABASE_SETUP_GUIDE.md" target="_blank">SUPABASE_SETUP_GUIDE.md</a> for detailed instructions
+            </div>
+        </div>
     `;
+
+    // Hide the main content areas since backend is required
+    const mainContent = document.querySelector('.container-fluid');
+    if (mainContent) {
+        const tabs = mainContent.querySelector('.nav-pills');
+        const tabContent = mainContent.querySelector('.tab-content');
+        if (tabs) tabs.style.display = 'none';
+        if (tabContent) tabContent.style.display = 'none';
+    }
 }
 
 // ============================================================================
