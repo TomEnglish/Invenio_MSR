@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "shipment_number": "SHIP-001",
+    "po_number": "PO-2026-001",
+    "part_description": "Turbine Rotor Assembly",
+    "status": "In Transit",
+    "supplier": "Siemens Energy",
+    "category": "Major Equipment",
+    "eta": "2026-03-12",
+    "delivery_date": "2026-03-15",
+    "num_pieces": 1
+  },
+  {
+    "id": 2,
+    "shipment_number": "SHIP-002",
+    "po_number": "PO-2026-001",
+    "part_description": "Generator Stator",
+    "status": "In Transit",
+    "supplier": "Siemens Energy",
+    "category": "Major Equipment",
+    "eta": "2026-03-14",
+    "delivery_date": "2026-03-15",
+    "num_pieces": 1
+  },
+  {
+    "id": 3,
+    "shipment_number": "SHIP-003",
+    "po_number": "PO-2026-002",
+    "part_description": "HRSG Module 1",
+    "status": "RTS",
+    "supplier": "Nooter/Eriksen",
+    "category": "Major Equipment",
+    "eta": "2026-03-28",
+    "delivery_date": "2026-04-01",
+    "num_pieces": 3
+  },
+  {
+    "id": 4,
+    "shipment_number": "SHIP-004",
+    "po_number": "PO-2026-003",
+    "part_description": "DCS Control Panels",
+    "status": "In Transit",
+    "supplier": "Emerson Process",
+    "category": "Instrumentation",
+    "eta": "2026-02-18",
+    "delivery_date": "2026-02-20",
+    "num_pieces": 12
+  },
+  {
+    "id": 5,
+    "shipment_number": "SHIP-005",
+    "po_number": "PO-2026-004",
+    "part_description": "Medium Voltage Switchgear",
+    "status": "In Transit",
+    "supplier": "ABB Electric",
+    "category": "Electrical",
+    "eta": "2026-02-25",
+    "delivery_date": "2026-02-28",
+    "num_pieces": 8
+  },
+  {
+    "id": 6,
+    "shipment_number": "SHIP-006",
+    "po_number": "PO-2026-006",
+    "part_description": "Gate Valves 6-24 inch",
+    "status": "Delivered",
+    "supplier": "Flowserve",
+    "category": "Valves",
+    "eta": "2026-02-10",
+    "delivery_date": "2026-02-15",
+    "num_pieces": 45
+  },
+  {
+    "id": 7,
+    "shipment_number": "SHIP-007",
+    "po_number": "PO-2026-007",
+    "part_description": "Structural Steel - Main Building",
+    "status": "Delivered",
+    "supplier": "Cives Steel",
+    "category": "Structural",
+    "eta": "2026-02-08",
+    "delivery_date": "2026-02-10",
+    "num_pieces": 125
+  },
+  {
+    "id": 8,
+    "shipment_number": "SHIP-008",
+    "po_number": "PO-2026-009",
+    "part_description": "Rooftop HVAC Units",
+    "status": "RTS",
+    "supplier": "Trane",
+    "category": "HVAC",
+    "eta": "2026-02-26",
+    "delivery_date": "2026-02-28",
+    "num_pieces": 4
+  },
+  {
+    "id": 9,
+    "shipment_number": "SHIP-009",
+    "po_number": "PO-2026-010",
+    "part_description": "Power Cable Reels 1-5",
+    "status": "In Transit",
+    "supplier": "Southwire",
+    "category": "Electrical",
+    "eta": "2026-02-23",
+    "delivery_date": "2026-02-25",
+    "num_pieces": 15
+  },
+  {
+    "id": 10,
+    "shipment_number": "SHIP-010",
+    "po_number": "PO-2026-007",
+    "part_description": "Structural Steel - Auxiliary Building",
+    "status": "Delivered",
+    "supplier": "Cives Steel",
+    "category": "Structural",
+    "eta": "2026-02-09",
+    "delivery_date": "2026-02-10",
+    "num_pieces": 87
+  }
+]

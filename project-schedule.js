@@ -17,22 +17,40 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
 });
 
-// Load schedule data from Supabase
+// Load schedule data from Supabase (with sample data fallback)
 async function loadScheduleData() {
     try {
-        console.log('Loading project schedule from Supabase...');
+        console.log('Loading project schedule...');
 
-        const { data, error } = await supabaseClient
-            .from('project_schedule')
-            .select('*')
-            .order('start_date', { ascending: true, nullsFirst: false });
+        let loadedFromSupabase = false;
 
-        if (error) throw error;
+        // Try Supabase first
+        if (supabaseClient && isSupabaseConfigured()) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('project_schedule')
+                    .select('*')
+                    .order('start_date', { ascending: true, nullsFirst: false });
 
-        scheduleData = data || [];
+                if (!error && data && data.length > 0) {
+                    scheduleData = data;
+                    loadedFromSupabase = true;
+                    console.log(`Loaded ${scheduleData.length} activities from Supabase`);
+                }
+            } catch (supabaseError) {
+                console.warn('Supabase not available, falling back to sample data');
+            }
+        }
+
+        // Fall back to sample data
+        if (!loadedFromSupabase) {
+            console.log('Loading sample schedule data (DEMO MODE)...');
+            const response = await fetch('sample_data/sample_project_schedule.json');
+            scheduleData = await response.json();
+            console.log(`Loaded ${scheduleData.length} sample activities (DEMO MODE)`);
+        }
+
         filteredData = scheduleData;
-
-        console.log(`Loaded ${scheduleData.length} schedule activities`);
 
         updateStatistics();
         populateFilters();
@@ -46,7 +64,7 @@ async function loadScheduleData() {
     } catch (error) {
         console.error('Error loading schedule data:', error);
         document.getElementById('scheduleTableBody').innerHTML =
-            '<tr><td colspan="9" class="text-center py-4 text-danger">Error loading schedule data. Please refresh the page.</td></tr>';
+            '<tr><td colspan="9" class="text-center py-4 text-danger">Error loading schedule data. Please check console.</td></tr>';
     }
 }
 

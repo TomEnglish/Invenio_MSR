@@ -28,36 +28,51 @@ document.addEventListener('DOMContentLoaded', function() {
     loadAllData();
 });
 
-// Load all data from Supabase
+// Load all data from Supabase (with sample data fallback)
 async function loadAllData() {
     try {
-        console.log('Loading data from Supabase...');
+        console.log('Loading dashboard data...');
 
-        // Load metrics from dashboard_metrics table
-        const { data: metricsData, error: metricsError } = await supabaseClient
-            .from('dashboard_metrics')
-            .select('*')
-            .order('last_updated', { ascending: false })
-            .limit(1)
-            .single();
+        let loadedFromSupabase = false;
+        let metricsData, shipments, poData;
 
-        if (metricsError) throw metricsError;
+        // Try to load from Supabase first
+        if (supabaseClient && isSupabaseConfigured()) {
+            try {
+                console.log('Attempting to load from Supabase...');
 
-        // Load shipments
-        const { data: shipments, error: shipmentsError } = await supabaseClient
-            .from('shipments')
-            .select('*')
-            .order('delivery_date', { ascending: false, nullsFirst: false });
+                const [metricsResp, shipmentsResp, poResp] = await Promise.all([
+                    supabaseClient.from('dashboard_metrics').select('*').order('last_updated', { ascending: false }).limit(1).single(),
+                    supabaseClient.from('shipments').select('*').order('delivery_date', { ascending: false, nullsFirst: false }),
+                    supabaseClient.from('purchase_orders').select('*').order('created_on', { ascending: false, nullsFirst: false })
+                ]);
 
-        if (shipmentsError) throw shipmentsError;
+                if (!metricsResp.error && !shipmentsResp.error && !poResp.error) {
+                    metricsData = metricsResp.data;
+                    shipments = shipmentsResp.data;
+                    poData = poResp.data;
+                    loadedFromSupabase = true;
+                    console.log('Loaded data from Supabase');
+                }
+            } catch (supabaseError) {
+                console.warn('Supabase not available, falling back to sample data');
+            }
+        }
 
-        // Load PO data
-        const { data: poData, error: poError } = await supabaseClient
-            .from('purchase_orders')
-            .select('*')
-            .order('created_on', { ascending: false, nullsFirst: false });
+        // Fall back to sample data if Supabase didn't work
+        if (!loadedFromSupabase) {
+            console.log('Loading sample data (DEMO MODE)...');
+            const [metricsResp, shipmentsResp, poResp] = await Promise.all([
+                fetch('sample_data/sample_dashboard_metrics.json'),
+                fetch('sample_data/sample_shipments.json'),
+                fetch('sample_data/sample_purchase_orders.json')
+            ]);
 
-        if (poError) throw poError;
+            metricsData = await metricsResp.json();
+            shipments = await shipmentsResp.json();
+            poData = await poResp.json();
+            console.log('Loaded sample data (DEMO MODE)');
+        }
 
         // Load installation data from local JSON files (not migrated to Supabase yet)
         const [auditDataResp, disciplineSummaryResp] = await Promise.all([
@@ -68,9 +83,9 @@ async function loadAllData() {
         const auditData = await auditDataResp.json();
         const disciplineSummary = await disciplineSummaryResp.json();
 
-        // Build metrics object from Supabase data
+        // Build metrics object
         const metrics = {
-            last_updated: metricsData.last_updated,
+            last_updated: metricsData.last_updated || new Date().toISOString(),
             project_name: metricsData.project_name || 'Project X',
             procurement: metricsData.procurement || {},
             installation: metricsData.installation || disciplineSummary || { total_items: 0, by_discipline: {} },
@@ -82,11 +97,14 @@ async function loadAllData() {
             shipments: shipments || [],
             poData: poData || [],
             auditData: auditData || [],
-            disciplineSummary: disciplineSummary || {}
+            disciplineSummary: disciplineSummary || {},
+            isDemoMode: !loadedFromSupabase
         };
 
-        console.log('Data loaded successfully from Supabase:', dashboardData);
-        console.log('Last updated:', metrics.last_updated);
+        console.log('Data loaded successfully:', dashboardData);
+        if (!loadedFromSupabase) {
+            console.log('%c📊 DEMO MODE: Using sample data', 'color: #f5a623; font-weight: bold');
+        }
 
         // Update all dashboard components
         updateKPICards();
@@ -99,7 +117,7 @@ async function loadAllData() {
 
     } catch (error) {
         console.error('Error loading dashboard data:', error);
-        showError('Failed to load dashboard data from Supabase. Please check the console for details.');
+        showError('Failed to load dashboard data. Please check the console for details.');
     }
 }
 

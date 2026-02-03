@@ -19,22 +19,40 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
 });
 
-// Load delivery dates from Supabase
+// Load delivery dates from Supabase (with sample data fallback)
 async function loadDeliveryDates() {
     try {
-        console.log('Loading delivery dates from Supabase...');
+        console.log('Loading delivery dates...');
 
-        const { data, error } = await supabaseClient
-            .from('delivery_dates')
-            .select('*')
-            .order('delivery_date', { ascending: true });
+        let loadedFromSupabase = false;
 
-        if (error) throw error;
+        // Try Supabase first
+        if (supabaseClient && isSupabaseConfigured()) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('delivery_dates')
+                    .select('*')
+                    .order('delivery_date', { ascending: true });
 
-        deliveryData = data || [];
+                if (!error && data && data.length > 0) {
+                    deliveryData = data;
+                    loadedFromSupabase = true;
+                    console.log(`Loaded ${deliveryData.length} delivery dates from Supabase`);
+                }
+            } catch (supabaseError) {
+                console.warn('Supabase not available, falling back to sample data');
+            }
+        }
+
+        // Fall back to sample data
+        if (!loadedFromSupabase) {
+            console.log('Loading sample delivery dates (DEMO MODE)...');
+            const response = await fetch('sample_data/sample_delivery_dates.json');
+            deliveryData = await response.json();
+            console.log(`Loaded ${deliveryData.length} sample delivery dates (DEMO MODE)`);
+        }
+
         filteredData = deliveryData;
-
-        console.log(`Loaded ${deliveryData.length} delivery dates`);
 
         updateStatistics();
         populateFilters();
@@ -43,7 +61,7 @@ async function loadDeliveryDates() {
     } catch (error) {
         console.error('Error loading delivery dates:', error);
         document.getElementById('deliveryTableBody').innerHTML =
-            '<tr><td colspan="8" class="text-center py-4 text-danger">Error loading delivery dates. Please refresh the page.</td></tr>';
+            '<tr><td colspan="8" class="text-center py-4 text-danger">Error loading delivery dates. Please check console.</td></tr>';
     }
 }
 

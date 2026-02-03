@@ -1,0 +1,34 @@
+{
+  "id": 1,
+  "project_name": "Project X",
+  "last_updated": "2026-02-03T14:30:00Z",
+  "procurement": {
+    "total_pos": 10,
+    "total_po_value": 28300000,
+    "total_shipments": 10,
+    "delivered_shipments": 3
+  },
+  "installation": {
+    "total_items": 862,
+    "by_discipline": {
+      "civil": { "total_items": 212, "total_field_whrs": 5240 },
+      "electrical": { "total_items": 166, "total_field_whrs": 4150 },
+      "instrumentation": { "total_items": 112, "total_field_whrs": 2680 },
+      "mechanical": { "total_items": 38, "total_field_whrs": 950 },
+      "steel": { "total_items": 334, "total_field_whrs": 8350 }
+    }
+  },
+  "status_counts": {
+    "po_status": {
+      "Finished Goods": 3,
+      "In Transit": 3,
+      "RTS": 2,
+      "Not RTS": 2
+    },
+    "shipment_status": {
+      "Delivered": 3,
+      "In Transit": 5,
+      "RTS": 2
+    }
+  }
+}
