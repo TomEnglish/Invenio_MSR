@@ -134,8 +134,13 @@ function updateKPICards() {
 
 // Update last updated timestamp
 function updateLastUpdated() {
-    const timestamp = dashboardData.metrics.last_updated;
-    document.getElementById('lastUpdated').textContent = formatDateTime(timestamp);
+    const element = document.getElementById('lastUpdated');
+
+    // Element may not exist if navigation was simplified
+    if (element) {
+        const timestamp = dashboardData.metrics.last_updated;
+        element.textContent = formatDateTime(timestamp);
+    }
 }
 
 // Create all charts
