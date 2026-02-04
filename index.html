@@ -257,57 +257,63 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line me-2"></i>
                 <span>MSR Dashboard</span>
             </a>
-            <div class="navbar-collapse" id="navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link text-white" href="index.html">
-                            <i class="fas fa-chart-line me-1"></i> Dashboard
+                            <i class="fas fa-home me-1"></i> Overview
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="gap-analysis.html">
-                            <i class="fas fa-chart-bar me-1"></i> Gap Analysis
+
+                    <!-- Materials Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-boxes me-1"></i> Materials
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="material-readiness.html">
+                                <i class="fas fa-tasks me-2"></i> Material Readiness
+                            </a></li>
+                            <li><a class="dropdown-item" href="material-tracking.html">
+                                <i class="fas fa-link me-2"></i> Material Tracking
+                            </a></li>
+                            <li><a class="dropdown-item" href="delivery-dates.html">
+                                <i class="fas fa-truck me-2"></i> Delivery Dates
+                            </a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="material-readiness.html">
-                            <i class="fas fa-tasks me-1"></i> Material Readiness
+
+                    <!-- Planning Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-calendar-alt me-1"></i> Planning
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="project-schedule.html">
+                                <i class="fas fa-calendar-alt me-2"></i> Project Schedule
+                            </a></li>
+                            <li><a class="dropdown-item" href="gap-analysis.html">
+                                <i class="fas fa-chart-bar me-2"></i> Gap Analysis
+                            </a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="material-tracking.html">
-                            <i class="fas fa-link me-1"></i> Material Tracking
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="delivery-dates.html">
-                            <i class="fas fa-truck me-1"></i> Delivery Dates
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="project-schedule.html">
-                            <i class="fas fa-calendar-alt me-1"></i> Project Schedule
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="samsara-tracking.html">
-                            <i class="fas fa-map-marker-alt me-1"></i> GPS Trackers
+                            <i class="fas fa-map-marker-alt me-1"></i> GPS Tracking
                         </a>
                     </li>
+
                     <li class="nav-item ms-3">
-                        <span class="navbar-text text-white">
-                            <i class="fas fa-clock me-2"></i>
-                            Last Updated: <span id="lastUpdated">Loading...</span>
-                        </span>
-                    </li>
-                    <li class="nav-item ms-3">
-                        <button class="btn btn-light btn-sm" onclick="refreshData()">
-                            <i class="fas fa-sync-alt me-1"></i>
-                            Refresh
+                        <button class="btn btn-light btn-sm" onclick="refreshData()" title="Refresh Data">
+                            <i class="fas fa-sync-alt"></i>
                         </button>
                     </li>
                 </ul>
