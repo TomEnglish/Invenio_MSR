@@ -1,0 +1,372 @@
+{
+  "work_packages": [
+    {
+      "id": "WP-001",
+      "name": "Foundation Construction",
+      "discipline": "Civil",
+      "scheduled_start": "2026-02-15",
+      "scheduled_finish": "2026-03-20",
+      "progress_percent": 45,
+      "is_critical": true,
+      "required_materials": [
+        {
+          "material_id": "MAT-101",
+          "description": "Rebar #8 Grade 60",
+          "po_number": "PO-2026-011",
+          "quantity": 25000,
+          "unit": "LF",
+          "status": "Delivered",
+          "delivery_date": "2026-02-10",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-102",
+          "description": "Concrete 5000 PSI",
+          "po_number": "PO-2026-012",
+          "quantity": 450,
+          "unit": "CY",
+          "status": "In Transit",
+          "eta": "2026-02-18",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-103",
+          "description": "Anchor Bolts 2\" x 36\"",
+          "po_number": "PO-2026-013",
+          "quantity": 120,
+          "unit": "EA",
+          "status": "Delivered",
+          "delivery_date": "2026-02-12",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-104",
+          "description": "Forming Material",
+          "po_number": "PO-2026-014",
+          "quantity": 1,
+          "unit": "LOT",
+          "status": "Delivered",
+          "delivery_date": "2026-02-08",
+          "is_on_site": true
+        }
+      ]
+    },
+    {
+      "id": "WP-002",
+      "name": "Turbine Installation",
+      "discipline": "Mechanical",
+      "scheduled_start": "2026-03-15",
+      "scheduled_finish": "2026-03-25",
+      "progress_percent": 0,
+      "is_critical": true,
+      "required_materials": [
+        {
+          "material_id": "MAT-001",
+          "description": "Turbine Generator Assembly",
+          "po_number": "PO-2026-001",
+          "quantity": 1,
+          "unit": "EA",
+          "status": "In Transit",
+          "eta": "2026-03-12",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-003",
+          "description": "Control System DCS",
+          "po_number": "PO-2026-003",
+          "quantity": 12,
+          "unit": "Panels",
+          "status": "In Transit",
+          "eta": "2026-02-20",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-201",
+          "description": "Turbine Mounting Kit",
+          "po_number": "PO-2026-015",
+          "quantity": 1,
+          "unit": "KIT",
+          "status": "RTS",
+          "eta": "2026-03-05",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-202",
+          "description": "Vibration Sensors",
+          "po_number": "PO-2026-016",
+          "quantity": 8,
+          "unit": "EA",
+          "status": "Not RTS",
+          "eta": null,
+          "is_on_site": false
+        }
+      ]
+    },
+    {
+      "id": "WP-003",
+      "name": "HRSG Installation",
+      "discipline": "Mechanical",
+      "scheduled_start": "2026-04-01",
+      "scheduled_finish": "2026-04-15",
+      "progress_percent": 0,
+      "is_critical": true,
+      "required_materials": [
+        {
+          "material_id": "MAT-002",
+          "description": "HRSG Unit",
+          "po_number": "PO-2026-002",
+          "quantity": 1,
+          "unit": "EA",
+          "status": "RTS",
+          "eta": "2026-03-28",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-203",
+          "description": "HRSG Support Steel",
+          "po_number": "PO-2026-017",
+          "quantity": 45,
+          "unit": "Tons",
+          "status": "Delivered",
+          "delivery_date": "2026-02-10",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-204",
+          "description": "Stack Assembly",
+          "po_number": "PO-2026-018",
+          "quantity": 1,
+          "unit": "EA",
+          "status": "In Transit",
+          "eta": "2026-03-15",
+          "is_on_site": false
+        }
+      ]
+    },
+    {
+      "id": "WP-004",
+      "name": "Electrical Switchgear Installation",
+      "discipline": "Electrical",
+      "scheduled_start": "2026-02-28",
+      "scheduled_finish": "2026-03-15",
+      "progress_percent": 10,
+      "is_critical": false,
+      "required_materials": [
+        {
+          "material_id": "MAT-004",
+          "description": "MV Switchgear",
+          "po_number": "PO-2026-004",
+          "quantity": 8,
+          "unit": "Lineups",
+          "status": "In Transit",
+          "eta": "2026-02-25",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-301",
+          "description": "Switchgear Foundation",
+          "po_number": "PO-2026-019",
+          "quantity": 1,
+          "unit": "EA",
+          "status": "Delivered",
+          "delivery_date": "2026-02-08",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-302",
+          "description": "Cable Tray System",
+          "po_number": "PO-2026-020",
+          "quantity": 500,
+          "unit": "LF",
+          "status": "Delivered",
+          "delivery_date": "2026-02-12",
+          "is_on_site": true
+        }
+      ]
+    },
+    {
+      "id": "WP-005",
+      "name": "Piping System Installation",
+      "discipline": "Mechanical",
+      "scheduled_start": "2026-03-15",
+      "scheduled_finish": "2026-06-15",
+      "progress_percent": 5,
+      "is_critical": true,
+      "required_materials": [
+        {
+          "material_id": "MAT-005",
+          "description": "Carbon Steel Pipe",
+          "po_number": "PO-2026-005",
+          "quantity": 45000,
+          "unit": "LF",
+          "status": "Not RTS",
+          "eta": "2026-03-10",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-006",
+          "description": "Process Valves",
+          "po_number": "PO-2026-006",
+          "quantity": 45,
+          "unit": "EA",
+          "status": "Delivered",
+          "delivery_date": "2026-02-15",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-401",
+          "description": "Pipe Fittings",
+          "po_number": "PO-2026-021",
+          "quantity": 1200,
+          "unit": "EA",
+          "status": "In Transit",
+          "eta": "2026-02-28",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-402",
+          "description": "Gaskets & Bolts",
+          "po_number": "PO-2026-022",
+          "quantity": 1,
+          "unit": "LOT",
+          "status": "Delivered",
+          "delivery_date": "2026-02-10",
+          "is_on_site": true
+        }
+      ]
+    },
+    {
+      "id": "WP-006",
+      "name": "Control Room HVAC",
+      "discipline": "Mechanical",
+      "scheduled_start": "2026-03-01",
+      "scheduled_finish": "2026-03-20",
+      "progress_percent": 0,
+      "is_critical": false,
+      "required_materials": [
+        {
+          "material_id": "MAT-009",
+          "description": "HVAC Equipment",
+          "po_number": "PO-2026-009",
+          "quantity": 4,
+          "unit": "Units",
+          "status": "RTS",
+          "eta": "2026-02-26",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-501",
+          "description": "Ductwork",
+          "po_number": "PO-2026-023",
+          "quantity": 800,
+          "unit": "LF",
+          "status": "Delivered",
+          "delivery_date": "2026-02-14",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-502",
+          "description": "Diffusers & Grilles",
+          "po_number": "PO-2026-024",
+          "quantity": 24,
+          "unit": "EA",
+          "status": "Delivered",
+          "delivery_date": "2026-02-14",
+          "is_on_site": true
+        }
+      ]
+    },
+    {
+      "id": "WP-007",
+      "name": "Fire Protection System",
+      "discipline": "Fire Protection",
+      "scheduled_start": "2026-03-25",
+      "scheduled_finish": "2026-04-15",
+      "progress_percent": 0,
+      "is_critical": false,
+      "required_materials": [
+        {
+          "material_id": "MAT-008",
+          "description": "Fire Protection System",
+          "po_number": "PO-2026-008",
+          "quantity": 1,
+          "unit": "System",
+          "status": "Not RTS",
+          "eta": "2026-03-25",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-601",
+          "description": "Sprinkler Heads",
+          "po_number": "PO-2026-025",
+          "quantity": 250,
+          "unit": "EA",
+          "status": "Not RTS",
+          "eta": null,
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-602",
+          "description": "Fire Pump",
+          "po_number": "PO-2026-026",
+          "quantity": 1,
+          "unit": "EA",
+          "status": "Not RTS",
+          "eta": null,
+          "is_on_site": false
+        }
+      ]
+    },
+    {
+      "id": "WP-008",
+      "name": "Electrical Power Distribution",
+      "discipline": "Electrical",
+      "scheduled_start": "2026-03-05",
+      "scheduled_finish": "2026-05-31",
+      "progress_percent": 8,
+      "is_critical": false,
+      "required_materials": [
+        {
+          "material_id": "MAT-010",
+          "description": "Power Cable",
+          "po_number": "PO-2026-010",
+          "quantity": 15000,
+          "unit": "LF",
+          "status": "In Transit",
+          "eta": "2026-02-23",
+          "is_on_site": false
+        },
+        {
+          "material_id": "MAT-701",
+          "description": "Conduit",
+          "po_number": "PO-2026-027",
+          "quantity": 8000,
+          "unit": "LF",
+          "status": "Delivered",
+          "delivery_date": "2026-02-11",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-702",
+          "description": "Junction Boxes",
+          "po_number": "PO-2026-028",
+          "quantity": 85,
+          "unit": "EA",
+          "status": "Delivered",
+          "delivery_date": "2026-02-11",
+          "is_on_site": true
+        },
+        {
+          "material_id": "MAT-703",
+          "description": "Panel Boards",
+          "po_number": "PO-2026-029",
+          "quantity": 12,
+          "unit": "EA",
+          "status": "In Transit",
+          "eta": "2026-03-01",
+          "is_on_site": false
+        }
+      ]
+    }
+  ]
+}
